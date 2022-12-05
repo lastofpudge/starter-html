@@ -1,0 +1,51 @@
+*
+  box-sizing: border-box
+  &:before, &:after
+    box-sizing: border-box
+
+*::-webkit-input-placeholder
+  color: #000
+  opacity: 1
+
+::-moz-placeholder
+  color:    #000
+  opacity:  1
+
+html
+  -webkit-font-smoothing: antialiased
+  -webkit-text-size-adjust: 100%
+  overflow-x: hidden
+
+html, body
+  height: 100%
+
+body
+  font-size: 16px
+  margin: 0
+  background: $bg
+  font-family: $default-font
+
+body.bg-dark
+  background: #1E1E1E
+
+input, textarea
+  border: none
+  outline: none
+
+button
+  cursor: pointer
+
+.img-responsive
+  display: block
+  max-width: 100%
+  height: auto
+
+.text-center
+  text-align: center
+
+::selection
+  background-color: $accent
+  color: #fff
+
+.hidden
+  display: none
