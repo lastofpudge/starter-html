@@ -1,20 +1,11 @@
-*
-  box-sizing: border-box
-  &:before, &:after
-    box-sizing: border-box
-
-*::-webkit-input-placeholder
-  color: #000
-  opacity: 1
-
-::-moz-placeholder
-  color:    #000
-  opacity:  1
-
 html
   -webkit-font-smoothing: antialiased
   -webkit-text-size-adjust: 100%
   overflow-x: hidden
+  box-sizing: border-box
+
+*,*::before,*::after
+  box-sizing: inherit
 
 html, body
   height: 100%
@@ -32,13 +23,20 @@ input, textarea
 button
   cursor: pointer
 
-.img-responsive
-  display: block
-  max-width: 100%
-  height: auto
+table
+  border-collapse: collapse
+  border-spacing: 0
 
 .text-center
   text-align: center
+
+*::-webkit-input-placeholder
+  color: #000
+  opacity: 1
+
+::-moz-placeholder
+  color:    #000
+  opacity:  1
 
 ::selection
   background-color: $accent
