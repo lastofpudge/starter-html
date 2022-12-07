@@ -1,20 +1,23 @@
-import pkg from "gulp";
-const { gulp, src, dest, parallel, series, watch } = pkg;
-
-import browserSync from "browser-sync";
-import gulpSass from "gulp-sass";
-import dartSass from "sass";
-import postCss from "gulp-postcss";
-import cssnano from "cssnano";
+const gulp = require("gulp");
+const cleanfn = require("gulp-clean");
+const browserSync = require("browser-sync");
+const gulpSass = require("gulp-sass");
+const postcss = require("gulp-postcss");
+const cssnano = require("cssnano");
+const dartSass = require("sass");
 const sassfn = gulpSass(dartSass);
-import concat from "gulp-concat";
-import uglifyim from "gulp-uglify-es";
-const uglify = uglifyim.default;
-import rename from "gulp-rename";
-import { deleteAsync } from "del";
-import imageminfn from "gulp-imagemin";
-import cache from "gulp-cache";
-import autoprefixer from "autoprefixer";
+const concat = require("gulp-concat");
+const uglify = require("gulp-uglify-es").default;
+const rename = require("gulp-rename");
+const imageminfn = require("gulp-imagemin");
+const autoprefixer = require("autoprefixer");
+const babel = require("gulp-babel");
+const webpackStream = require("webpack-stream");
+const webpack = require("webpack");
+
+const webpackOptions = {
+  mode: "production",
+};
 
 function browsersync() {
   browserSync.init({
@@ -29,23 +32,26 @@ function browsersync() {
 }
 
 function js() {
-  return src([
-    "app/libs/jquery/dist/jquery.min.js",
-    // "app/libs/slick/dist/slick.min.js",
-    // "app/libs/select2/dist/select2.min.js",
-    "app/js/common.js",
-  ])
+  return gulp
+    .src(["app/js/common.js"])
+    .pipe(webpackStream(webpackOptions, webpack))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
     .pipe(concat("scripts.min.js"))
     .pipe(uglify())
-    .pipe(dest("app/js"))
+    .pipe(gulp.dest("app/js"))
     .pipe(browserSync.stream());
 }
 
 function sass() {
-  return src("app/sass/**/*.sass")
+  return gulp
+    .src("app/sass/**/*.sass")
     .pipe(sassfn({}))
     .pipe(
-      postCss([
+      postcss([
         autoprefixer({ grid: "autoplace" }),
         cssnano({
           preset: ["default", { discardComments: { removeAll: true } }],
@@ -53,41 +59,29 @@ function sass() {
       ])
     )
     .pipe(rename({ suffix: ".min", prefix: "" }))
-    .pipe(dest("app/css"))
+    .pipe(gulp.dest("app/css"))
     .pipe(browserSync.stream());
 }
 
 function imagemin() {
-  return src(["app/img/**/*"]).pipe(imageminfn()).pipe(dest("dist/img/"));
-}
-
-async function removedist() {
-  await deleteAsync("dist/**/*", { force: true });
-}
-
-async function clearcache() {
-  cache.clearAll();
+  return gulp.src(["app/img/**/*"]).pipe(imageminfn()).pipe(gulp.dest("dist/img/"));
 }
 
 function buildcopy() {
-  return src(
-    [
-      "app/*.html",
-      "app/.htaccess",
-      "{app/js,app/css}/*.min.*",
-      "app/fonts/**/*",
-    ],
-    { base: "app/" }
-  ).pipe(dest("dist"));
+  return gulp
+    .src(["app/*.html", "app/.htaccess", "{app/js,app/css}/*.min.*", "app/fonts/**/*"], { base: "app/" })
+    .pipe(gulp.dest("dist"));
 }
 
 function startwatch() {
-  watch("app/sass/**/*.sass", { usePolling: true }, sass);
-  watch(["libs/**/*.js", "app/js/common.js"], { usePolling: true }, js);
-  watch(["app/*.html"], { usePolling: true }).on("change", browserSync.reload);
+  gulp.watch("app/sass/**/*.sass", { usePolling: true }, sass);
+  gulp.watch(["libs/**/*.js", "app/js/common.js"], { usePolling: true }, js);
+  gulp.watch(["app/*.html"], { usePolling: true }).on("change", browserSync.reload);
 }
 
-export { js, sass, imagemin, clearcache };
-export let build = series(removedist, imagemin, js, sass, buildcopy);
+function clean(cb) {
+  return gulp.src("dist", { allowEmpty: true }).pipe(cleanfn());
+}
 
-export default series(js, sass, parallel(browsersync, startwatch));
+exports.default = gulp.series(js, sass, gulp.parallel(browsersync, startwatch));
+exports.build = gulp.series(clean, imagemin, js, sass, buildcopy);
