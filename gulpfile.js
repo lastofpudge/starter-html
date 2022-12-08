@@ -1,11 +1,10 @@
 const gulp = require("gulp");
 const cleanfn = require("gulp-clean");
 const browserSync = require("browser-sync");
-const gulpSass = require("gulp-sass");
 const postcss = require("gulp-postcss");
+const postcssImport = require("postcss-import");
 const cssnano = require("cssnano");
-const dartSass = require("sass");
-const sassfn = gulpSass(dartSass);
+const sassfn = require("gulp-sass")(require("sass"));
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
 const rename = require("gulp-rename");
@@ -18,6 +17,14 @@ const webpack = require("webpack");
 const webpackOptions = {
   mode: "production",
 };
+
+const postCssConfig = [
+  autoprefixer({ grid: "autoplace" }),
+  cssnano({
+    preset: ["default", { discardComments: { removeAll: true } }],
+  }),
+  postcssImport,
+];
 
 function browsersync() {
   browserSync.init({
@@ -50,14 +57,7 @@ function sass() {
   return gulp
     .src("app/sass/**/*.sass")
     .pipe(sassfn({}))
-    .pipe(
-      postcss([
-        autoprefixer({ grid: "autoplace" }),
-        cssnano({
-          preset: ["default", { discardComments: { removeAll: true } }],
-        }),
-      ])
-    )
+    .pipe(postcss(postCssConfig))
     .pipe(rename({ suffix: ".min", prefix: "" }))
     .pipe(gulp.dest("app/css"))
     .pipe(browserSync.stream());
@@ -75,7 +75,7 @@ function buildcopy() {
 
 function startwatch() {
   gulp.watch("app/sass/**/*.sass", { usePolling: true }, sass);
-  gulp.watch(["libs/**/*.js", "app/js/common.js"], { usePolling: true }, js);
+  gulp.watch(["app/js/common.js"], { usePolling: true }, js);
   gulp.watch(["app/*.html"], { usePolling: true }).on("change", browserSync.reload);
 }
 
