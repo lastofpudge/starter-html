@@ -14,9 +14,7 @@ const babel = require("gulp-babel");
 const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
 
-const webpackOptions = {
-  mode: "production",
-};
+const webpackOptions = { mode: "production" };
 
 const postCssConfig = [
   autoprefixer({ grid: "autoplace" }),
