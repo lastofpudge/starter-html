@@ -1,0 +1,28 @@
+const gulp = require("gulp");
+const postcss = require("gulp-postcss");
+const postcssImport = require("postcss-import");
+const cssnano = require("cssnano");
+const sassfn = require("gulp-sass")(require("sass"));
+const rename = require("gulp-rename");
+const autoprefixer = require("autoprefixer");
+const browserSync = require("browser-sync");
+
+const postCssConfig = [
+  autoprefixer({ grid: "autoplace" }),
+  cssnano({
+    preset: ["default", { discardComments: { removeAll: true } }],
+  }),
+  postcssImport,
+];
+
+const buildSass = () => {
+  return gulp
+    .src("app/sass/**/*.sass")
+    .pipe(sassfn({}))
+    .pipe(postcss(postCssConfig))
+    .pipe(rename({ suffix: ".min", prefix: "" }))
+    .pipe(gulp.dest("dist/assets/css"))
+    .pipe(browserSync.stream());
+};
+
+module.exports = { buildSass };

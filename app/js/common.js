@@ -1,5 +1,4 @@
-window.$ = require("jquery");
-
+import $ from "jquery";
 require("select2");
 
 $(function () {
