@@ -29,4 +29,5 @@ exports.default = gulp.series(
   buildSvgSprite,
   gulp.parallel(browsersyncfn, startwatch)
 );
+
 exports.build = gulp.series(clean, imageMin, imageCopy, buildHtml, buildJs, buildSass, copyFonts, buildSvgSprite);

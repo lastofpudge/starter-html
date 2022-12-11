@@ -2,12 +2,21 @@ const gulp = require("gulp");
 const babel = require("gulp-babel");
 const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
-const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
 const browserSync = require("browser-sync");
+const rename = require("gulp-rename");
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 const webpackOptions = {
-  mode: "production",
+  mode: process.env.MODE,
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      name: "vendors",
+    },
+  },
   // devtool: "eval-cheap-source-map",
 };
 
@@ -20,7 +29,6 @@ const buildJs = () => {
         presets: ["@babel/env"],
       })
     )
-    .pipe(concat("scripts.min.js"))
     .pipe(uglify())
     .pipe(gulp.dest("dist/assets/js/"))
     .pipe(browserSync.stream());
