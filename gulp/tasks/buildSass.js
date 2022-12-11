@@ -17,7 +17,7 @@ const postCssConfig = [
 
 const buildSass = () => {
   return gulp
-    .src("app/sass/**/*.sass")
+    .src("app/sass/main.sass")
     .pipe(sassfn({ includePaths: ["node_modules"] }))
     .pipe(postcss(postCssConfig))
     .pipe(rename({ suffix: ".min", prefix: "" }))

@@ -13,8 +13,8 @@ html, body
 body
   font-size: 16px
   margin: 0
-  background: $bg
-  font-family: $font
+  background: var(--bgColor)
+  font-family: var(--mainFont)
 
 input, textarea
   border: none
@@ -38,11 +38,11 @@ b,strong
   opacity: 1
 
 ::-moz-placeholder
-  color:    #000
-  opacity:  1
+  color: #000
+  opacity: 1
 
 ::selection
-  background-color: $accent
+  background-color: var(--accentColor)
   color: #fff
 
 .hidden

@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title>UI</title>
     <meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png" />
@@ -17,22 +16,24 @@
 
   <body>
     <div class="wrapper">
-      <div class="size">
-        <br />
+      <main class="main-container">
+        <div class="size">
+          <br />
 
-        <div style="width: 300px">
-          <select name="select" class="js-select" style="width: 100%" data-placeholder="Placeholder">
-            <option></option>
-            <option value="#1">Option-1</option>
-            <option value="#2">Option-2</option>
-          </select>
+          <div style="width: 300px">
+            <select name="select" class="js-select" style="width: 100%" data-placeholder="Placeholder">
+              <option></option>
+              <option value="#1">Option-1</option>
+              <option value="#2">Option-2</option>
+            </select>
+          </div>
+
+          <br />
+          <svg class="svg-icon" style="width: 22px; height: 22px; fill: red">
+            <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#basket"></use>
+          </svg>
         </div>
-
-        <br />
-        <svg class="svg-icon" style="width: 22px; height: 22px; fill: red">
-          <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#basket"></use>
-        </svg>
-      </div>
+      </main>
     </div>
     <script src="/assets/js/scripts.min.js"></script>
   </body>
