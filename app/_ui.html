@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>UI</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png" />
-    <meta name="theme-color" content="#111" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#111" />
-    <link rel="stylesheet" href="/assets/css/main.min.css" />
+    @include('components/head.html', { "title": "UI", })
   </head>
 
   <body>
-    <div class="wrapper">
-      <main class="main-container">
-        <div class="size">
+    <div class="g-wrapper">
+      <main>
+        <div class="g-container">
           <br />
-
+          @include('components/breadcrumbs.html')
           <div style="width: 300px">
             <select name="select" class="js-select" style="width: 100%" data-placeholder="Placeholder">
               <option></option>
@@ -32,6 +22,30 @@
           <svg class="svg-icon" style="width: 22px; height: 22px; fill: red">
             <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#basket"></use>
           </svg>
+          <svg class="svg-icon" style="width: 22px; height: 22px; fill: red">
+            <use xlink:href="/assets/symbol/svg/sprite.symbol.svg#basket2"></use>
+          </svg>
+          <br />
+          <!-- Slider main container -->
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+          </div>
         </div>
       </main>
     </div>

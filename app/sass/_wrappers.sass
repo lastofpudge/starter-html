@@ -1,4 +1,4 @@
-.wrapper
+.g-wrapper
   overflow-x: hidden
   width: 100%
   min-height: 100%
@@ -6,7 +6,8 @@
   background-color: #f7f9f9
   flex-direction: column
 
-.size
+.g-container
   max-width: var(--size)
   margin: 0 auto
   padding: var(--spacings)
+  @include clearfix
