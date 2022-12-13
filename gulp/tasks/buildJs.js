@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const babel = require("gulp-babel");
 const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
+const gulpif = require("gulp-if");
 const uglify = require("gulp-uglify-es").default;
 
 require("dotenv").config();
@@ -34,7 +35,7 @@ const buildJs = () => {
         presets: ["@babel/env"],
       })
     )
-    .pipe(uglify())
+    .pipe(gulpif(process.env.MODE === "production", uglify()))
     .pipe(gulp.dest("dist/assets/js/"));
 };
 

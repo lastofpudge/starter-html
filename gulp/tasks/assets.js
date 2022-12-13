@@ -1,4 +1,5 @@
 const gulp = require("gulp");
+const changed = require("gulp-changed");
 const imageminfn = require("gulp-imagemin");
 
 const imageMin = () => {
@@ -9,11 +10,11 @@ const imageMin = () => {
 };
 
 const imageCopy = () => {
-  return gulp.src(["app/assets/images/**/*"]).pipe(gulp.dest("dist/assets/images/"));
+  return gulp.src(["app/assets/images/**/*"]).pipe(changed("dist/assets/images/")).pipe(gulp.dest("dist/assets/images/"));
 };
 
 const copyFonts = () => {
-  return gulp.src(["app/assets/fonts/**/*"]).pipe(gulp.dest("dist/assets/fonts"));
+  return gulp.src(["app/assets/fonts/**/*"]).pipe(changed("dist/assets/fonts/")).pipe(gulp.dest("dist/assets/fonts/"));
 };
 
 module.exports = { imageMin, imageCopy, copyFonts };
