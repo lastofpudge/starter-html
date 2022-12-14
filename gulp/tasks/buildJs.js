@@ -5,30 +5,11 @@ const webpack = require("webpack");
 const gulpif = require("gulp-if");
 const uglify = require("gulp-uglify-es").default;
 
-require("dotenv").config();
-
-const webpackOptions = {
-  mode: process.env.MODE,
-  performance: {
-    hints: false,
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
-  },
-};
+import { webpackOptions } from "../../webpack.config";
 
 const buildJs = () => {
   return gulp
-    .src(["app/js/common.js"])
+    .src(["app/js/main.js"])
     .pipe(webpackStream(webpackOptions, webpack))
     .pipe(
       babel({

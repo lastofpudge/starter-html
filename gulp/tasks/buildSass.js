@@ -9,7 +9,15 @@ const autoprefixer = require("autoprefixer");
 const postCssConfig = [
   autoprefixer({ grid: "autoplace" }),
   cssnano({
-    preset: ["default", { discardComments: { removeAll: true } }],
+    preset: [
+      "default",
+      {
+        zindex: false,
+        autoprefixer: false,
+        discardUnused: false,
+        discardComments: { removeAll: true },
+      },
+    ],
   }),
   postcssImport,
 ];

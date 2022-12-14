@@ -20,18 +20,49 @@ const browserSync = (done) => {
   done();
 };
 
-const browserSyncReload = (done) => {
-  browsersync.reload();
-  done();
-};
-
 const startwatch = () => {
-  gulp.watch("app/assets/svg/*.svg", gulp.series(buildSvgSprite, browserSyncReload));
-  gulp.watch("app/assets/fonts/**/*", gulp.series(copyFonts, browserSyncReload));
-  gulp.watch("app/assets/images/**/*", gulp.series(imageCopy, browserSyncReload));
-  gulp.watch("app/sass/**/*.sass", gulp.series(buildSass, browserSyncReload));
-  gulp.watch(["app/js/common.js"], gulp.series(buildJs, browserSyncReload));
-  gulp.watch(["app/**/*.html"], gulp.series(buildHtml, browserSyncReload));
+  gulp.watch(
+    "app/assets/svg/*.svg",
+    gulp.series(buildSvgSprite, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
+  gulp.watch(
+    "app/assets/fonts/**/*",
+    gulp.series(copyFonts, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
+  gulp.watch(
+    "app/assets/images/**/*",
+    gulp.series(imageCopy, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
+  gulp.watch(
+    "app/sass/**/*.sass",
+    gulp.series(buildSass, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
+  gulp.watch(
+    ["app/js/**/*.js"],
+    gulp.series(buildJs, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
+  gulp.watch(
+    ["app/**/*.html"],
+    gulp.series(buildHtml, function (done) {
+      browsersync.reload();
+      done();
+    })
+  );
 };
 
 const clean = () => {
