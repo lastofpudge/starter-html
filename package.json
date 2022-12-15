@@ -5,7 +5,7 @@
   "main": "index.js",
   "author": "Andrii D.",
   "browserslist": [
-    "last 10 versions"
+    "> 1% and not dead"
   ],
   "license": "ISC",
   "scripts": {

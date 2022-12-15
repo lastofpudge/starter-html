@@ -4,7 +4,7 @@
     font-weight: $weight
     font-style: $style
 
-    @if $asset-pipeline == true 
-      src: font-url('#{$file-path}.ttf') format('truetype')
+    @if $asset-pipeline == true
+      src: font-url('#{$file-path}.woff2') format('woff2')
     @else
-      src: url('#{$file-path}.ttf') format('truetype')
+      src: url('#{$file-path}.woff2') format('woff2')
