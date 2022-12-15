@@ -21,7 +21,7 @@ const webpackOptions = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      // chunks: "all",
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,

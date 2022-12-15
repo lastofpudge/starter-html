@@ -70,4 +70,4 @@ const clean = () => {
 };
 
 exports.default = gulp.parallel(startwatch, browserSync);
-exports.build = gulp.series(clean, imageMin, buildHtml, buildJs, buildSass, copyFonts, buildSvgSprite);
+exports.build = gulp.series(clean, imageMin, buildJs, buildSass, copyFonts, buildSvgSprite, buildHtml);
