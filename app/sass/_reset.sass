@@ -11,10 +11,12 @@ html, body
   height: 100%
 
 body
-  font-size: 16px
+  font-size: 14px
   margin: 0
   background: var(--bgColor)
   font-family: var(--mainFont)
+  +media-up(768)
+    font-size: 16px
 
 input, textarea
   border: none
@@ -30,15 +32,20 @@ table
 b,strong
   font-weight: 700
 
-.text-center
-  text-align: center
+a
+  text-decoration: none
+
+img
+  max-width: 100%
+  height: auto
+  object-fit: cover
 
 *::-webkit-input-placeholder
-  color: #000
+  color: var(--accentColor)
   opacity: 1
 
 ::-moz-placeholder
-  color: #000
+  color: var(--accentColor)
   opacity: 1
 
 ::selection
