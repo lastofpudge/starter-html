@@ -1,9 +1,10 @@
-import $ from "jquery";
+import Choices from "choices.js";
 
-import "select2";
-
-$(function () {
-  $(".js-select").select2({
-    minimumResultsForSearch: -1,
+(function () {
+  const element = document.querySelector(".js-select");
+  new Choices(element, {
+    placeholder: true,
+    searchEnabled: false,
+    itemSelectText: "",
   });
-});
+})();

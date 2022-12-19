@@ -1,9 +1,7 @@
-import $ from "jquery";
-
 import Swiper, { Navigation, Pagination, EffectFade } from "swiper";
 Swiper.use([Navigation, Pagination, EffectFade]);
 
-$(function () {
+(function () {
   new Swiper(".js-swiper", {
     loop: true,
     pagination: {
@@ -18,4 +16,4 @@ $(function () {
       crossFade: true,
     },
   });
-});
+})();

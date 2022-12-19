@@ -47,10 +47,9 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "jquery": "^3.6.1",
+    "choices.js": "^10.2.0",
     "magnific-popup": "^1.1.0",
     "parsleyjs": "^2.9.2",
-    "select2": "^4.1.0-rc.0",
     "swiper": "^8.4.5"
   }
 }
