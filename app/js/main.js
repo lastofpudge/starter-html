@@ -1,7 +1,8 @@
-import "parsleyjs";
+// import "parsleyjs";
 
-import "./components/select";
-import "./components/modals";
-import "./components/slider";
+// import "./components/select";
+// import "./components/mask";
+// import "./components/modals";
+// import "./components/slider";
 
 (function () {});
