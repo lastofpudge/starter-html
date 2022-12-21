@@ -5,6 +5,27 @@
   display: flex
   flex-wrap: wrap
   flex-direction: row
+  label
+    display: inline-block
+  input[type="checkbox"]
+    position: absolute
+    left: -9999px
+    z-index: -1
+    opacity: 0
+    &+span::before
+      content: '\2713'
+      transition: opacity .2s ease-in-out
+      opacity: 0
+    &:checked+span::before
+      opacity: 1
+    &+span
+      +flex-center
+      position: relative
+      cursor: pointer
+      width: 20px
+      height: 20px
+      border: 1px solid #000
+      border-radius: 5px
   input
     width: 100%
     height: 30px
@@ -20,3 +41,8 @@
   letter-spacing: -0.01em
   font-size: 10px
   color: rgb(248, 61, 52)
+
+label.parsley-error + .parsley-errors-list
+  display: inline-flex
+  align-items: center
+  margin-left: 5px

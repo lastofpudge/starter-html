@@ -38,12 +38,13 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-uglify-es": "^3.0.0",
     "gulp-version-number": "^0.2.4",
-    "path": "^0.12.7",
+    "imagemin-webp": "^7.0.0",
     "postcss": "^8.4.19",
     "postcss-import": "^15.1.0",
     "prettier": "^2.8.1",
     "sass": "^1.55.0",
     "webpack": "^5.75.0",
+    "webpack-bundle-analyzer": "^4.7.0",
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {

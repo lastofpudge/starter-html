@@ -1,4 +1,4 @@
-// import "parsleyjs";
+import "parsleyjs";
 
 // import "./components/select";
 // import "./components/mask";
